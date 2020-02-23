@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,9 +11,18 @@ public class Player : MonoBehaviour
     public int yIncrement;
     public int xIncrement;
 
+    public Text healthDisplay;
+
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        healthDisplay.text = health.ToString();
+               
         var isDownArrowPressed = Input.GetKeyDown(KeyCode.DownArrow);
         var isUpArrowPressed = Input.GetKeyDown(KeyCode.UpArrow);
 
